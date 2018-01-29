@@ -23,6 +23,8 @@ $.fn.S3Uploader = (options) ->
     remove_failed_progress_bar: false
     remove_failed_uploads: false
     failed_upload_class: "failed"
+    fileupload_in_class: "fileupload-in"
+    fileupload_hover_class: "fileupload-hover"
     progress_bar_target: null
     filename_target: null
     click_submit_target: null
@@ -87,18 +89,18 @@ $.fn.S3Uploader = (options) ->
           timeout = $dropzone.dropZoneTimeout
 
           if (!timeout)
-            $dropzone.addClass('fileupload-in')
+            $dropzone.addClass(settings.fileupload_in_class)
           else
             clearTimeout(timeout)
 
           if (e.currentTarget == $dropzone[0])
-            $dropzone.addClass('fileupload-hover')
+            $dropzone.addClass(settings.fileupload_hover_class)
           else
-            $dropzone.removeClass('fileupload-hover')
+            $dropzone.removeClass(settings.fileupload_hover_class)
 
           $dropzone.dropZoneTimeout = setTimeout () ->
             $dropzone.dropZoneTimeout = null
-            $dropzone.removeClass('fileupload-in fileupload-hover')
+            $dropzone.removeClass("#{settings.fileupload_in_class} #{settings.fileupload_hover_class}")
           , 200
 
       start: (e) ->
