@@ -18,6 +18,7 @@ $.fn.S3Uploader = (options) ->
     path: ''
     additional_data: null
     before_add: null
+    dragover: null
     remove_completed_progress_bar: true
     remove_completed_uploads: true
     remove_failed_progress_bar: false
@@ -84,7 +85,9 @@ $.fn.S3Uploader = (options) ->
       dropZone: settings.dropZone
 
       dragover: (e) ->
-        if settings.dropZone
+        if settings.dragover
+          settings.dragover(e)
+        else if settings.dropZone
           $dropzone = settings.dropZone
           timeout = $dropzone.dropZoneTimeout
 
